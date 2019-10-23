@@ -8,6 +8,7 @@ To get you introduced to what our amazing team works on, we would like you to bu
 * Use a relational database with initial seed data
 * Use Laravel's ORM Eloquent
 * Follow the classic MVC pattern
+* Documentation
 
 We use Vue.js, but you are free to use anything (Laravel Blade, SPA with or without a JS framework). 
 
