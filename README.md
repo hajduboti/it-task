@@ -5,7 +5,7 @@ To get you introduced to what our amazing team works on, we would like you to bu
 ## We expect your application to:
 
 * Use Laravel
-* Use a relational database with initial seed data
+* Use a relational database (seed data is optional)
 * Use Laravel's ORM Eloquent
 * Follow the classic MVC pattern
 * Documentation
@@ -29,11 +29,11 @@ A passenger has:
 * email
 * phone number
 
-A fligthcase can have many passengers. There should be always only one passenger as contact person on a flightcase.
+A fligthcase can have many passengers.
 
 ### Flightcase list
 
-From a UI, all flightcases can be viewed and managed. A new flightcase can be added and an existing one deleted. (plus if you can make edit as well). A list of passengers should be displayed for each flightcase and it should be possible to add/remove(plus if you do edit) passengers as long as there is always one passenger on a flightcase. The structure and design of the page(s) is completely up to you. 
+From a UI, all flightcases can be viewed and managed. A new flightcase can be added and an existing one deleted. (plus if you can make edit as well). A list of passengers should be displayed for each flightcase and it should be possible to add/remove(plus if you do edit) passengers. The structure and design of the page(s) is completely up to you. 
 
 ## What now?
 
