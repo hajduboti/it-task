@@ -1,15 +1,15 @@
 # Flyhjaelp's IT task
 
-To get you introduced to what our amazing team works on, we would like you to build a simple flightcase list, where we can create new flightcases and add passengers to them.
+Task description
 
-## We expect your application to:
+## The application uses:
 
-* Use Laravel
-* Use a relational database (seed data is optional)
-* Use Laravel's ORM Eloquent
-* Documentation
+* Laravel
+* MySQL
+* Laravel's ORM Eloquent
+* Vue.js
 
-We use Vue.js, but you are free to use anything (Laravel Blade, SPA with or without a JS framework). 
+## Data description:
 
 ### Flightcase model
 
@@ -32,10 +32,5 @@ A fligthcase can have many passengers.
 
 ### Flightcase list
 
-From a UI, all flightcases can be viewed and managed. A new flightcase can be added and an existing one deleted. (plus if you can make edit as well). A list of passengers should be displayed for each flightcase and it should be possible to add/remove(plus if you do edit) passengers. The structure and design of the page(s) is completely up to you. 
+From a UI, all flightcases can be viewed and managed. A new flightcase can be added and an existing one deleted. (plus if you can make edit as well). A list of passengers should be displayed for each flightcase and it should be possible to add/remove(plus if you do edit) passengers. 
 
-## What now?
-
-To get started, fork this repository, implement your solution and send it to the person that handed the task to you. 
-
-If you have questions, you can email it@flyhjaelp.dk or the person that forwarded you the task.
