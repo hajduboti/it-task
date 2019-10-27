@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Passenger::class, function (Faker $faker) {
     return [
-        'casenumber' => $faker->numberBetween($min = 1, $max = 62),
+        'casenumber' => $faker->numberBetween($min = 1, $max = 30),
         'firstname' => $faker->firstName(),
         'lastname' => $faker->lastName(),
         'email' => $faker->email(),

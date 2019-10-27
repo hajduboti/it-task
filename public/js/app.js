@@ -1863,6 +1863,97 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1873,6 +1964,13 @@ __webpack_require__.r(__webpack_exports__);
         flightnumber: '',
         bookingnumber: '',
         issue: ''
+      },
+      passenger: {
+        casenumber: '',
+        firstname: '',
+        lastname: '',
+        email: '',
+        phone: ''
       },
       flightcase_number: '',
       pagination: {},
@@ -1905,6 +2003,159 @@ __webpack_require__.r(__webpack_exports__);
         prev_page_url: links.prev
       };
       this.pagination = pagination;
+    },
+    deleteFlightcase: function deleteFlightcase(id) {
+      var _this2 = this;
+
+      if (confirm("Are you sure you would like to delete the flightcase with id " + id)) {
+        fetch("api/flightcase/".concat(id), {
+          method: 'delete'
+        }).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          alert('Flightcase removed');
+
+          _this2.fetchFlightcases();
+        });
+      }
+    },
+    handleChange: function handleChange(e) {
+      if (e.target.options.selectedIndex > -1) {
+        this.flightcase.issue = this.flightcase.issue;
+      }
+    },
+    addFlightcase: function addFlightcase() {
+      var _this3 = this;
+
+      if (this.edit === false) {
+        //ADD
+        fetch('api/flightcase', {
+          method: 'post',
+          body: JSON.stringify(this.flightcase),
+          headers: {
+            'content-type': 'application/json'
+          }
+        }).then(function (res) {
+          return res.json;
+        }).then(function (data) {
+          _this3.flightcase.casenumber = '';
+          _this3.flightcase.departuredate = '';
+          _this3.flightcase.flightnumber = '';
+          _this3.flightcase.bookingnumber = '';
+          _this3.flightcase.issue = '';
+          alert('Case added');
+
+          _this3.fetchFlightcases();
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      } else {
+        //UPDATE
+        fetch('api/flightcase', {
+          method: 'put',
+          body: JSON.stringify(this.flightcase),
+          headers: {
+            'content-type': 'application/json'
+          }
+        }).then(function (res) {
+          return res.json;
+        }).then(function (data) {
+          _this3.flightcase.casenumber = '';
+          _this3.flightcase.departuredate = '';
+          _this3.flightcase.flightnumber = '';
+          _this3.flightcase.bookingnumber = '';
+          _this3.flightcase.issue = '';
+          alert('Case updated');
+
+          _this3.fetchFlightcases();
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      }
+    },
+    editFlightcase: function editFlightcase(flightcase) {
+      this.edit = true;
+      this.flightcase.casenumber = flightcase.casenumber;
+      this.flightcase.departuredate = flightcase.departuredate;
+      this.flightcase.flightnumber = flightcase.flightnumber;
+      this.flightcase.bookingnumber = flightcase.bookingnumber;
+      this.flightcase.issue = flightcase.issue;
+    },
+    addPassenger: function addPassenger(passenger) {
+      var _this4 = this;
+
+      if (this.edit === false) {
+        //ADD
+        delete this.passenger.id;
+        fetch('api/passenger', {
+          method: 'post',
+          body: JSON.stringify(this.passenger),
+          headers: {
+            'content-type': 'application/json'
+          }
+        }).then(function (res) {
+          return res.json;
+        }).then(function (data) {
+          _this4.passenger.id = '';
+          _this4.passenger.casenumber = '';
+          _this4.passenger.firstname = '';
+          _this4.passenger.lastname = '';
+          _this4.passenger.email = '';
+          _this4.passenger.phone = '';
+          alert('Passenger added');
+
+          _this4.fetchFlightcases();
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      } else {
+        //UPDATE
+        fetch('api/passenger', {
+          method: 'put',
+          body: JSON.stringify(this.passenger),
+          headers: {
+            'content-type': 'application/json'
+          }
+        }).then(function (res) {
+          return res.json;
+        }).then(function (data) {
+          _this4.passenger.id = '';
+          _this4.passenger.casenumber = '';
+          _this4.passenger.firstname = '';
+          _this4.passenger.lastname = '';
+          _this4.passenger.email = '';
+          _this4.passenger.phone = '';
+          alert('Passenger updated');
+
+          _this4.fetchFlightcases();
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      }
+    },
+    editPassenger: function editPassenger(passenger) {
+      this.edit = true;
+      this.passenger.id = passenger.id;
+      this.passenger.casenumber = passenger.casenumber;
+      this.passenger.firstname = passenger.firstname;
+      this.passenger.lastname = passenger.lastname;
+      this.passenger.email = passenger.email;
+      this.passenger.phone = passenger.phone;
+    },
+    deletePassenger: function deletePassenger(id) {
+      var _this5 = this;
+
+      if (confirm("Are you sure you would like to delete this passenger? ")) {
+        fetch("api/passenger/".concat(id), {
+          method: 'delete'
+        }).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          alert('Passenger removed');
+
+          _this5.fetchFlightcases();
+        });
+      }
     }
   }
 });
@@ -37223,6 +37474,222 @@ var render = function() {
         "div",
         { staticClass: "col-md-8" },
         [
+          _c("div", { staticClass: "card card-body" }, [
+            _c("h2", [_vm._v("Add a new case")]),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.addFlightcase($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.flightcase.casenumber,
+                        expression: "flightcase.casenumber"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      required: "",
+                      placeholder: "Case number"
+                    },
+                    domProps: { value: _vm.flightcase.casenumber },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.flightcase,
+                          "casenumber",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.flightcase.departuredate,
+                        expression: "flightcase.departuredate"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "date",
+                      required: "",
+                      placeholder: "Departure date"
+                    },
+                    domProps: { value: _vm.flightcase.departuredate },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.flightcase,
+                          "departuredate",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.flightcase.flightnumber,
+                        expression: "flightcase.flightnumber"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      required: "",
+                      placeholder: "Flight number"
+                    },
+                    domProps: { value: _vm.flightcase.flightnumber },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.flightcase,
+                          "flightnumber",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.flightcase.bookingnumber,
+                        expression: "flightcase.bookingnumber"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      required: "",
+                      placeholder: "Booking number"
+                    },
+                    domProps: { value: _vm.flightcase.bookingnumber },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.flightcase,
+                          "bookingnumber",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.flightcase.issue,
+                          expression: "flightcase.issue"
+                        }
+                      ],
+                      staticClass: "custom-select form-control",
+                      attrs: { required: "" },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.flightcase,
+                              "issue",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          _vm.handleChange
+                        ]
+                      }
+                    },
+                    [
+                      _c(
+                        "option",
+                        { attrs: { value: "", selected: "", disabled: "" } },
+                        [_vm._v(" Issue type")]
+                      ),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Cancellation" } }, [
+                        _vm._v("Cancellation")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Delay" } }, [
+                        _vm._v("Delay")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Overbooking" } }, [
+                        _vm._v("Overbooking")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-light btn-block",
+                    attrs: { type: "submit" }
+                  },
+                  [_vm._v(" Save")]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
           _c("nav", { attrs: { "aria-label": "Page navigation" } }, [
             _c("ul", { staticClass: "pagination" }, [
               _c(
@@ -37290,29 +37757,384 @@ var render = function() {
           ]),
           _vm._v(" "),
           _vm._l(_vm.flightcases, function(flightcase) {
-            return _c(
-              "div",
-              { key: flightcase.casenumber, staticClass: "card card-body" },
-              [
-                _c("h3", [
-                  _vm._v("Case number: " + _vm._s(flightcase.casenumber))
+            return _c("div", { key: flightcase.casenumber }, [
+              _c("div", { staticClass: "card card-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col" }, [
+                    _c("h3", [
+                      _c("strong", [_vm._v("Case number:")]),
+                      _vm._v(" " + _vm._s(flightcase.casenumber))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _c("strong", [_vm._v("Departure date:")]),
+                      _vm._v(" " + _vm._s(flightcase.departuredate))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _c("strong", [_vm._v("Flight number:")]),
+                      _vm._v(" " + _vm._s(flightcase.flightnumber))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _c("strong", [_vm._v("Booking number:")]),
+                      _vm._v(" " + _vm._s(flightcase.bookingnumber))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _c("strong", [_vm._v("Issue type:")]),
+                      _vm._v(" " + _vm._s(flightcase.issue))
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: {
+                          type: "button",
+                          "data-toggle": "modal",
+                          "data-target": ".add-passenger-modal"
+                        }
+                      },
+                      [_vm._v("Add passenger")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "modal fade add-passenger-modal",
+                        attrs: {
+                          id: "add-passenger-modal",
+                          tabindex: "-1",
+                          role: "dialog",
+                          "aria-labelledby": "myLargeModalLabel",
+                          "aria-hidden": "true"
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "modal-dialog modal-lg" }, [
+                          _c("div", { staticClass: "modal-content" }, [
+                            _c("div", { staticClass: "card card-body" }, [
+                              _c("h2", [_vm._v("Add a new passenger")]),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "form",
+                                {
+                                  on: {
+                                    submit: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.addPassenger($event)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.passenger.id,
+                                          expression: "passenger.id"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { type: "text", hidden: "" },
+                                      domProps: { value: _vm.passenger.id },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.passenger,
+                                            "id",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.passenger.casenumber,
+                                          expression: "passenger.casenumber"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Case number"
+                                      },
+                                      domProps: {
+                                        value: _vm.passenger.casenumber
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.passenger,
+                                            "casenumber",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.passenger.firstname,
+                                          expression: "passenger.firstname"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Firstname"
+                                      },
+                                      domProps: {
+                                        value: _vm.passenger.firstname
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.passenger,
+                                            "firstname",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.passenger.lastname,
+                                          expression: "passenger.lastname"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Lastname"
+                                      },
+                                      domProps: {
+                                        value: _vm.passenger.lastname
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.passenger,
+                                            "lastname",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.passenger.email,
+                                          expression: "passenger.email"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Email"
+                                      },
+                                      domProps: { value: _vm.passenger.email },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.passenger,
+                                            "email",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.passenger.phone,
+                                          expression: "passenger.phone"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Phone"
+                                      },
+                                      domProps: { value: _vm.passenger.phone },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.passenger,
+                                            "phone",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-light btn-block",
+                                      attrs: { type: "submit" }
+                                    },
+                                    [_vm._v("Save")]
+                                  )
+                                ]
+                              )
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col" },
+                    [
+                      _c("h3", [_vm._v("Passengers: ")]),
+                      _vm._v(" "),
+                      _vm._l(flightcase.passengers, function(passenger) {
+                        return _c("div", { key: passenger.id }, [
+                          _c("div", { staticClass: "card card-body" }, [
+                            _c("p", [
+                              _c("strong", [_vm._v("First name:")]),
+                              _vm._v(" " + _vm._s(passenger.firstname))
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _c("strong", [_vm._v("Last name:")]),
+                              _vm._v(" " + _vm._s(passenger.lastname))
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _c("strong", [_vm._v("Email:")]),
+                              _vm._v(" " + _vm._s(passenger.email))
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _c("strong", [_vm._v("Mobile number:")]),
+                              _vm._v(" " + _vm._s(passenger.phone))
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-outline-secondary",
+                                attrs: {
+                                  "data-toggle": "modal",
+                                  "data-target": ".add-passenger-modal"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.editPassenger(passenger)
+                                  }
+                                }
+                              },
+                              [_vm._v(" Edit")]
+                            ),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deletePassenger(passenger.id)
+                                  }
+                                }
+                              },
+                              [_vm._v(" Delete")]
+                            )
+                          ]),
+                          _c("br")
+                        ])
+                      })
+                    ],
+                    2
+                  )
                 ]),
                 _vm._v(" "),
-                _c("p", [
-                  _vm._v("Departure date: " + _vm._s(flightcase.departuredate))
-                ]),
+                _c("br"),
                 _vm._v(" "),
-                _c("p", [
-                  _vm._v("Flight number: " + _vm._s(flightcase.flightnumber))
-                ]),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-secondary",
+                    on: {
+                      click: function($event) {
+                        return _vm.editFlightcase(flightcase)
+                      }
+                    }
+                  },
+                  [_vm._v(" Edit")]
+                ),
+                _c("br"),
                 _vm._v(" "),
-                _c("p", [
-                  _vm._v("Booking number: " + _vm._s(flightcase.bookingnumber))
-                ]),
-                _vm._v(" "),
-                _c("p", [_vm._v("Issue type: " + _vm._s(flightcase.issue))])
-              ]
-            )
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteFlightcase(flightcase.casenumber)
+                      }
+                    }
+                  },
+                  [_vm._v(" Delete")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("br")
+            ])
           })
         ],
         2

@@ -23,8 +23,7 @@ class PassengerController extends Controller
     public function store(Request $request)
     {
         //
-        $passenger = $request->isMethod('put') ? Passenger::findOrFail
-        ($request->id) : new Passenger;
+        $passenger = $request->isMethod('put') ? Passenger::findOrFail($request->id) : new Passenger;
 
         $passenger->casenumber = $request -> input('casenumber');
         $passenger->firstname = $request -> input('firstname');
@@ -50,6 +49,6 @@ class PassengerController extends Controller
         
         if($passenger->delete()){
             return new PassengerResource($passenger);
-        }        
+        }
     }
 }

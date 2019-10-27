@@ -11,6 +11,6 @@ class Passenger extends Model
 
 
     public function flightcase(){
-        return $this->belongsTo(Flightcase::class);
+        return $this->belongsTo(Flightcase::class, 'casenumber');
     }
 }

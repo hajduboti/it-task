@@ -11,11 +11,7 @@ use App\Http\Resources\Flightcase as FlightcaseResource;
 
 class FlightcaseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         // Get flightcases
@@ -23,36 +19,31 @@ class FlightcaseController extends Controller
 
         // Return collection of flightcases as a resource 
         return FlightcaseResource::collection($flightcases);
+
+        //Return passengers for each flightcase
+        foreach($flightcases as $flightcase){
+            echo $flightcase;
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function store(Request $request)
     {
-        //
+        //Update flightcase if exists
         $flightcase = $request->isMethod('put') ? Flightcase::findOrFail
         ($request->casenumber) : new Flightcase;
-
+        $flightcase->casenumber = $request ->input('casenumber');
         $flightcase->departuredate = $request -> input('departuredate');
         $flightcase->flightnumber = $request -> input('flightnumber');
         $flightcase->bookingnumber = $request -> input('bookingnumber');
         $flightcase->issue = $request -> input('issue');
 
+        //Add flightcase
         if($flightcase->save()){
             return new FlightcaseResource($flightcase);
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         // Get a flightcase
@@ -60,20 +51,14 @@ class FlightcaseController extends Controller
         return new FlightcaseResource($flightcase);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
+        //Delete a flightcase
         $flightcase = Flightcase::findOrFail($id);
-        
         if($flightcase->delete()){
             return new FlightcaseResource($flightcase);
         }        
     }
-
 
 }
