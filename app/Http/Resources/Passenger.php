@@ -14,6 +14,7 @@ class Passenger extends JsonResource
      */
     public function toArray($request)
     {
+        // Default resource
         return parent::toArray($request);
     }
 }

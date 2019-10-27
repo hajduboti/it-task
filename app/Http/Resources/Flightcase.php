@@ -16,6 +16,7 @@ class Flightcase extends JsonResource
     public function toArray($request)
     {
         //return parent::toArray($request);
+        // Custom resource to return 
         return [
             'casenumber'=> $this->casenumber,
             'departuredate'=> $this->departuredate,

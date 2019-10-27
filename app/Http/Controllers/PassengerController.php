@@ -13,16 +13,16 @@ class PassengerController extends Controller
 
     public function index()
     {
-        // Get flightcases
+        // Get passengers
         $passengers = Passenger::paginate(15);
 
-        // Return collection of flightcases as a resource 
+        // Return collection of passengers as a resource 
         return PassengerResource::collection($passengers);
     }
 
     public function store(Request $request)
     {
-        //
+        //Update passenger if exists
         $passenger = $request->isMethod('put') ? Passenger::findOrFail($request->id) : new Passenger;
 
         $passenger->casenumber = $request -> input('casenumber');
@@ -30,7 +30,7 @@ class PassengerController extends Controller
         $passenger->lastname = $request -> input('lastname');
         $passenger->email = $request -> input('email');
         $passenger->phone = $request -> input('phone');
-
+        //Save passenger
         if($passenger->save()){
             return new PassengerResource($passenger);
         }
@@ -38,13 +38,14 @@ class PassengerController extends Controller
 
     public function show($id)
     {
-        // Get a flightcase
+        // Get a passenger by id
         $passenger = Passenger::findOrFail($id);
         return new PassengerResource($passenger);
     }
 
     public function destroy($id)
-    {
+    {   
+        //Delete passenger by id
         $passenger = Passenger::findOrFail($id);
         
         if($passenger->delete()){

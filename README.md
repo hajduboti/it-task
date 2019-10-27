@@ -34,12 +34,12 @@ To get a local copy up and running follow these steps.
 
 ### Prerequisites
 
-The following should be installed on your machine:
+The following should be installed and running on your machine:
 
 * Node.js
 * PHP 7.1
 * Composer
-* XAMPP
+* XAMPP or other to run MySQL
 
 ### Installation
 
@@ -55,7 +55,7 @@ npm install
 ```sh
 composer install
 ```
-4. Set up virtual host if using Apache
+4. Connect to your Mysql server via the .env file
 
 5. Run migrations
 ```sh
