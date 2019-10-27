@@ -27,11 +27,6 @@ A passenger has:
 
 A fligthcase can have many passengers.
 
-## UI:
-
-From a UI, all flightcases can be viewed and managed. A new flightcase can be added and an existing one edited and deleted. 
-A list of passengers should be displayed for each flightcase and it should be possible to add/remove(plus if you do edit) passengers. 
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -76,6 +71,12 @@ php artisan db:seed
 ```sh
 php artisan serve --port=8080
 ```
+
+## UI:
+
+From a UI, all flightcases can be viewed and managed. A new flightcase can be added and an existing one edited and deleted. 
+A list of passengers should be displayed for each flightcase and it should be possible to add/remove(plus if you do edit) passengers. 
+View the application from: http://localhost:8080/
 
 ### API endpoints
 
