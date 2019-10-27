@@ -1,7 +1,5 @@
 # Flyhjaelp's IT task
 
-Task description
-
 ## The application uses:
 
 * Laravel and it's ORM Eloquent
