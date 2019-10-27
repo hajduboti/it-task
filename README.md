@@ -73,10 +73,64 @@ php artisan migrate
 php artisan db:seed
 ```
 
-### Run the application
-
-
+### Running the application
 
 ```sh
 php artisan serve --port=8080
 ```
+
+### API endpoints
+
+* List of flightcases:
+    * GET http://localhost:8080/api/flightcases
+* Get a single flightcase by casenumber:
+    * GET http://localhost:8080/api/flightcase/id
+* Create a new case:
+    * POST http://localhost:8080/api/flightcase
+    * Request body example:
+        {
+            "casenumber": 3220,
+            "departuredate": "2001-10-11",
+            "flightnumber": "FR421",
+            "bookingnumber": "21635123",
+            "issue": "Delay"
+        }
+* Update an existing case:
+    * PUT http://localhost:8080/api/flightcase
+    * Request body example:
+        {
+            "casenumber": 3220,
+            "departuredate": "2019-10-11",
+            "flightnumber": "FR421",
+            "bookingnumber": "21635123",
+            "issue": "Delay"
+        }
+* Delete a flightcase by casenumber:
+    * DELETE http://localhost:8080/api/flightcase/id
+
+* List of passengers:
+    * GET http://localhost:8080/api/passengers
+* Get a single passenger by id:
+    * GET http://localhost:8080/api/passenger/id
+* Create a new passenger:
+    * POST http://localhost:8080/api/passenger
+    * Request body example:
+        {
+            "casenumber": 54,
+            "firstname": "Alberta",
+            "lastname": "Cartwright",
+            "email": "bshields@yahoo.com",
+            "phone": "+5508282089626"
+        }
+* Update an existing passenger:
+    * PUT http://localhost:8080/passenger
+    * Request body example:
+        {
+            "casenumber": 22,
+            "firstname": "Albert",
+            "lastname": "Cartwright",
+            "email": "bshields@yahoo.com",
+            "phone": "+5508282089626"
+        }
+* Delete a passenger by id:
+    * DELETE http://localhost:8080/api/passenger/id
