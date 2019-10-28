@@ -56,15 +56,22 @@ npm install
 ```sh
 composer install
 ```
-4. Connect to your Mysql server via the .env file
 
-5. Run migrations
+4. Create a database with the name laravel on your MySQL server
+
+5. Connect to your MySQL server via the .env file
+
+6. Run migrations
 ```sh
 php artisan migrate
 ```
-6. Seed the database
+7. Seed the database
 ```sh
 php artisan db:seed
+```
+8. Create an encryption key
+```sh
+php artisan key:generate
 ```
 
 ### Running the application
