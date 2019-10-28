@@ -4,6 +4,7 @@
 
 * Laravel and it's ORM Eloquent
 * Vue.js
+* Bootstrap 4
 * MySQL
 
 ## Data description:
